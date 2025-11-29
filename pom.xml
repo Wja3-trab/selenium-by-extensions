@@ -23,7 +23,7 @@
     </dependencies>
     <distributionManagement>
         <repository>
-            <id>selenium-by-extension</id>
+            <id>selenium-by-extensions</id>
             <name>GitHub Wja3-trab Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/Wja3-trab/selenium-by-extensions</url>
         </repository>
