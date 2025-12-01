@@ -30,8 +30,8 @@ jobs:
       - name: Import GPG private key
         run: |
           echo "$GPG_PRIVATE_KEY" | gpg --batch --import --yes --always-trust
-       # env:
-         # GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}  # Reference the GitHub Secret
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}  # Reference the GitHub Secret
 
       # Configure GPG for signing
       - name: Configure GPG
