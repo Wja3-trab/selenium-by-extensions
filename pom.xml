@@ -49,6 +49,11 @@
                         <goals>
                             <goal>sign</goal> <!-- Sign the artifact -->
                         </goals>
+                           <configuration>
+                                 <gpgExecutable>gpg</gpgExecutable>  <!-- Path to GPG executable -->
+                                 <keyname>${env.GPG_KEYNAME}</keyname>
+                                 <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+                             </configuration>
                     </execution>
                 </executions>
             </plugin>
