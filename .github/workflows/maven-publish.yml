@@ -25,7 +25,9 @@ jobs:
       # Import GPG private key from GitHub secrets and configure GPG
       - name: Import GPG private key
         run: |
-          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import --yes
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           
       - name: Configure GPG
         run: |
