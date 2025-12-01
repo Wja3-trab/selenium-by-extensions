@@ -22,6 +22,10 @@ jobs:
           distribution: 'temurin'  # Use 'temurin' for Adoptium (formerly AdoptOpenJDK)
           architecture: x64
 
+      # Install GPG
+      - name: Install GPG
+        run: sudo apt-get install -y gnupg
+
       # Import GPG private key from GitHub secrets and configure GPG
       - name: Import GPG private key
         run: |
@@ -40,7 +44,8 @@ jobs:
 
       # Build and deploy the artifact to Maven Central
       - name: Build and Deploy to Maven Central
-        run: mvn clean deploy -DskipTests -P release
+        #run: mvn clean deploy -DskipTests -P release
+        run: mvn clean install -P sign
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Passphrase is required for signing
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub token for authentication
