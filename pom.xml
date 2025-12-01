@@ -51,7 +51,7 @@
                         </goals>
                            <configuration>
                                  <gpgExecutable>gpg</gpgExecutable>  <!-- Path to GPG executable -->
-                                 <keyname>${env.GPG_KEYNAME}</keyname>
+                                 <keyname>${env.GPG_PRIVATE_KEY}</keyname>
                                  <passphrase>${env.GPG_PASSPHRASE}</passphrase>
                              </configuration>
                     </execution>
@@ -75,7 +75,7 @@
         <profile>
             <id>release</id>
             <properties>
-                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.keyname>${env.GPG_PRIVATE_KEY}</gpg.keyname>
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
             </properties>
         </profile>
