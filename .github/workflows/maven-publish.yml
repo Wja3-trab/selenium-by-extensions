@@ -14,12 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up JDK 17 (or the Java version you are using)
+      # Set up JDK 17 using Adoptium (Temurin)
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'temurin'  # Use 'temurin' for Adoptium (formerly AdoptOpenJDK)
           architecture: x64
 
       # Import GPG private key from GitHub secrets and configure GPG
@@ -27,17 +27,20 @@ jobs:
         run: |
           echo "$GPG_PRIVATE_KEY" | gpg --batch --import --yes
         env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}  # Reference the GitHub Secret
+
+      # Configure GPG for signing
       - name: Configure GPG
         run: |
           echo "use-agent" >> ~/.gnupg/gpg.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
           echo "allow-loopback-pinentry" >> ~/.gnupg/gpg.conf
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Reference the GitHub Secret
 
       # Build and deploy the artifact to Maven Central
       - name: Build and Deploy to Maven Central
         run: mvn clean deploy -DskipTests -P release
         env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Passphrase is required for signing
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub token for authentication
