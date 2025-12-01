@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "use-agent" >> ~/.gnupg/gpg.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "default-key $GPG_PRIVATE_KEY" >> ~/.gnupg/gpg.conf
+          echo "default-key 41C9ACED" >> ~/.gnupg/gpg.conf
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Reference the GitHub Secret
 
