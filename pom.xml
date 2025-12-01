@@ -7,13 +7,15 @@
     <groupId>org.byextension</groupId>
     <artifactId>byextension</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
+    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -21,16 +23,37 @@
             <version>4.38.0</version>
         </dependency>
     </dependencies>
+
+    <!-- Distribution Management (Maven Central) -->
     <distributionManagement>
         <repository>
-            <id>selenium-by-extensions</id>
-            <name>GitHub Wja3-trab Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Wja3-trab/selenium-by-extensions</url>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
         </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
+    <!-- Build Plugins -->
     <build>
         <plugins>
+            <!-- GPG Plugin for Signing Artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>sign</goal> <!-- Sign the artifact -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
@@ -41,4 +64,16 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Profiles for Release (GPG Signing) -->
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>
