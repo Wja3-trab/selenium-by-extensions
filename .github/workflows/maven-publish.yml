@@ -30,15 +30,15 @@ jobs:
       - name: Import GPG private key
         run: |
           echo "$GPG_PRIVATE_KEY" | gpg --batch --import --yes --always-trust
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}  # Reference the GitHub Secret
+       # env:
+         # GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}  # Reference the GitHub Secret
 
       # Configure GPG for signing
       - name: Configure GPG
         run: |
           echo "use-agent" >> ~/.gnupg/gpg.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg.conf
+          echo "default-key $GPG_PRIVATE_KEY" >> ~/.gnupg/gpg.conf
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Reference the GitHub Secret
 
@@ -47,5 +47,5 @@ jobs:
         #run: mvn clean deploy -DskipTests -P release
         run: mvn clean install -P release
         env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Passphrase is required for signing
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Passphrase is required for signing
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub token for authentication
