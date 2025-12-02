@@ -10,33 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-          server-id: central
-          server-username: ${{ secrets.CENTRAL_USERNAME }}
-          server-password: ${{ secrets.CENTRAL_PASSWORD }}
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: central
+        server-username: CENTRAL_USERNAME
+        server-password: CENTRAL_PASSWORD
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: Import GPG private key
-        run: |
-          echo "$GPG_PRIVATE_KEY" | gpg --batch --import --yes
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-
-      - name: Configure GPG
-        run: |
-          echo "pinentry-mode loopback" > ~/.gnupg/gpg.conf
-          echo "default-key ${GPG_KEY_ID}" >> ~/.gnupg/gpg.conf
-          chmod 600 ~/.gnupg/gpg.conf
-        env:
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-
-      - name: Build and Deploy
-        run: mvn -B clean deploy -P release
-        env:
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    - name: Build and deploy
+      run: mvn -B clean deploy -P release
+      env:
+        CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+        CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
