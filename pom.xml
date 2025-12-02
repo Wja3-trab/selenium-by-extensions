@@ -7,14 +7,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Project Coordinates -->
-    <groupId>org.byextension</groupId> <!-- Must match your Sonatype namespace -->
+    <groupId>io.github.wja3-trab</groupId> <!-- Must match your Sonatype namespace -->
     <artifactId>byextension</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <!-- Project Metadata -->
-    <name>ByExtension</name>
-    <description>Selenium Java library for browser extensions</description>
+    <name>Selenium ByExtensions</name>
+    <description>Utility project that extends the Selenium class 'By'. It allows developers to target elements via data-testid, aria-label and role.</description>
     <url>https://github.com/yourusername/selenium-by-extensions</url>
 
     <!-- License -->
