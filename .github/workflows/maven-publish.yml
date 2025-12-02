@@ -45,7 +45,7 @@ jobs:
       # Build and deploy the artifact to Maven Central
       - name: Build and Deploy to Maven Central
         #run: mvn clean deploy -DskipTests -P release
-        run: mvn clean deploy -DskipTests -P release
+        run: mvn --batch-mode deploy -P release
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}  # Passphrase is required for signing
           GH_TOKEN: ${{ secrets.GH_TOKEN }}  # GitHub token for authentication
