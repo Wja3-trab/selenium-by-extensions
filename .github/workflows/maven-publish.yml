@@ -1,8 +1,9 @@
-name: Deploy to Maven Central 
+name: Deploy to Maven Central
 
 on:
   push:
-    branches: [ "main" ]
+    tags:
+      - 'v*'  # Must include git tag to publish new version
 
 jobs:
   deploy:
