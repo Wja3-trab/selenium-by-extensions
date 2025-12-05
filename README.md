@@ -39,6 +39,14 @@ The following methods are available to locate elements based on various attribut
 - Stable Selenium version
 - Maven
 
+## Use in your project
+To use this library in your project then include the following in your pom.xml:
+**`<dependency>
+    <groupId>io.github.wja3-trab</groupId>
+    <artifactId>byextension</artifactId>
+    <version>1.0.0</version>
+</dependency>`**
+
 ## Example
 **`WebElement searchInput = driver.findElement(ByExtension.role("combobox"));`**
 
