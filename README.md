@@ -39,6 +39,9 @@ The following methods are available to locate elements based on various attribut
 - Stable Selenium version
 - Maven
 
+## Example
+**`WebElement searchInput = driver.findElement(ByExtension.role("combobox"));`**
+
 ## Contributing
 
 Feel free to contribute by making suggestions or reporting any issues. Your feedback and contributions are welcome!
