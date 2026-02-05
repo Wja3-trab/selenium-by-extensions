@@ -45,7 +45,7 @@ To use this library in your project then include the following **`dependency`** 
 <dependency>
     <groupId>io.github.wja3-trab</groupId>
     <artifactId>byextension</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
