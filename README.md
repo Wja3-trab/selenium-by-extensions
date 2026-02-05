@@ -35,8 +35,8 @@ The following methods are available to locate elements based on various attribut
 
 ## Requirements
 
-- Java 17
-- Stable Selenium version
+- Java 11
+- Selenium 4.35.0 or later
 - Maven
 
 ## Use in your project
