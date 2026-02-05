@@ -15,7 +15,7 @@
     <!-- Project Metadata -->
     <name>Selenium ByExtensions</name>
     <description>Utility project that extends the Selenium class 'By'. It allows developers to target elements via data-testid, aria-label and role.</description>
-    <url>https://github.com/yourusername/selenium-by-extensions</url>
+    <url>https://github.com/wja3-trab/selenium-by-extensions</url>
 
     <!-- License -->
     <licenses>
