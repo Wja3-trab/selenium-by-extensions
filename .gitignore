@@ -7,6 +7,7 @@ target/
 *.iml
 *.iws
 out/
+key
 
 # Eclipse
 .apt_generated

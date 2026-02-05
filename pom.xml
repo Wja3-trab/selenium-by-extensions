@@ -28,9 +28,9 @@
 
     <!-- SCM -->
     <scm>
-        <url>https://github.com/yourusername/selenium-by-extensions</url>
-        <connection>scm:git:git://github.com/yourusername/selenium-by-extensions.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:yourusername/selenium-by-extensions.git</developerConnection>
+        <url>https://github.com/wja3-trab/selenium-by-extensions</url>
+        <connection>scm:git:git://github.com/wja3-trab/selenium-by-extensions.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:wja3-trab/selenium-by-extensions.git</developerConnection>
     </scm>
 
     <!-- Developers -->
